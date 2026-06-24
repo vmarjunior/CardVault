@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "f1a2b3c4-0000-0000-0000-000000000001",
+    "AccountName": "admin",
+    "Nickname": "Admin",
+    "Password": "admin",
+    "Created": "2026-01-01T10:00:00",
+    "LastActive": "2026-06-22T10:00:00"
+  },
+  {
+    "Id": "f1a2b3c4-0000-0000-0000-000000000002",
+    "AccountName": "jace.beleren",
+    "Nickname": "MindSculptor",
+    "Password":  "password123",
+    "Created": "2026-02-15T08:30:00",
+    "LastActive": null
+  },
+  {
+    "Id": "f1a2b3c4-0000-0000-0000-000000000003",
+    "AccountName": "chandra.nalaar",
+    "Nickname": "Pyromaster",
+    "Password": "password123@",
+    "Created": "2026-03-10T14:45:00",
+    "LastActive": "2026-06-20T20:15:00"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "Id": "d1e2f3a4-0000-0000-0000-000000000001",
+    "Name": "Jace's Mill Control",
+    "Type": 1,
+    "UserId": "f1a2b3c4-0000-0000-0000-000000000002",
+    "IsPrivate": false
+  },
+  {
+    "Id": "d1e2f3a4-0000-0000-0000-000000000002",
+    "Name": "Chandra's Mono-Red Aggro",
+    "Type": 2,
+    "UserId": "f1a2b3c4-0000-0000-0000-000000000003",
+    "IsPrivate": false
+  },
+  {
+    "Id": "d1e2f3a4-0000-0000-0000-000000000003",
+    "Name": "Admin Vault Stash",
+    "Type": 0,
+    "UserId": "f1a2b3c4-0000-0000-0000-000000000001",
+    "IsPrivate": true
+  }
+]

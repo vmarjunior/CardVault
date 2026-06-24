@@ -1,0 +1,6 @@
+@CardVault_HostAddress = http://localhost:5157
+
+GET {{CardVault_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

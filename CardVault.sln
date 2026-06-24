@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.API", "API\CardVault.API.csproj", "{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C0C48786-90B6-48C0-BE13-F926542726D0} = {C0C48786-90B6-48C0-BE13-F926542726D0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Application", "Application\CardVault.Application.csproj", "{C0C48786-90B6-48C0-BE13-F926542726D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Domain", "Domain\CardVault.Domain.csproj", "{E4B64665-F301-4B46-A131-574F419AF45A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Infrastructure", "Infrastructure\CardVault.Infrastructure.csproj", "{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Domain.UnitTests", "CardVault.Domain.UnitTests\CardVault.Domain.UnitTests.csproj", "{3835C711-D4E4-4054-A548-443DEB44B672}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0C48786-90B6-48C0-BE13-F926542726D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0C48786-90B6-48C0-BE13-F926542726D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0C48786-90B6-48C0-BE13-F926542726D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0C48786-90B6-48C0-BE13-F926542726D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B64665-F301-4B46-A131-574F419AF45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B64665-F301-4B46-A131-574F419AF45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B64665-F301-4B46-A131-574F419AF45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B64665-F301-4B46-A131-574F419AF45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3835C711-D4E4-4054-A548-443DEB44B672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3835C711-D4E4-4054-A548-443DEB44B672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3835C711-D4E4-4054-A548-443DEB44B672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3835C711-D4E4-4054-A548-443DEB44B672}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1FF26C1-30BF-48D7-BF51-DFDC595BDC8B}
+	EndGlobalSection
+EndGlobal
