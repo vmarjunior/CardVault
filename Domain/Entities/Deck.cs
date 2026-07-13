@@ -1,7 +1,4 @@
 ﻿using CardVault.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CardVault.Domain.Entities
 {
@@ -36,8 +33,10 @@ namespace CardVault.Domain.Entities
             return _userCards.Sum(dc => dc.Card?.Price ?? 0);
         }
 
-        public void UpdateDeckPrivacy(bool isPrivate)
+        public void UpdateDeckInformation(string name, DeckType deckType, bool isPrivate)
         {
+            Name = name;
+            Type = deckType;
             IsPrivate = isPrivate;
         }
 

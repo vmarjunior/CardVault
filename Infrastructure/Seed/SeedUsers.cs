@@ -1,9 +1,5 @@
 ﻿using CardVault.Domain.Entities;
 using CardVault.Infrastructure.Helpers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.Json;
 
 namespace CardVault.Infrastructure.Seed

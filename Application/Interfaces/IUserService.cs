@@ -8,11 +8,11 @@ namespace CardVault.Application.Interfaces
 {
     public interface IUserService
     {
-        public Task<PagedResult<UserViewDTO>> GetAllAsync(UserQueryParameters queryParameters);
-        public Task<UserViewDTO?> GetByIdAsync(Guid id);
-        public Task<UserViewDTO> CreateAsync(UserCreateDTO userCreateDTO);
-        public Task UpdateProfileAsync(Guid id, UserUpdateProfileDTO userUpdateDTO);
-        public Task UpdateAccountAsync(Guid id, UserUpdateAccountDTO userUpdateDTO);
-        public Task DeleteAsync(Guid id);
+        public Task<PagedResult<UserResponseDTO>> GetAllAsync(UserQueryParameters queryParameters);
+        public Task<UserResponseDTO?> GetByIdAsync(Guid id);
+        public Task<UserResponseDTO> CreateAsync(UserCreateDTO userCreateDTO);
+        public Task UpdateProfileAsync(Guid currentUserId, Guid id, UserUpdateProfileDTO userUpdateDTO);
+        public Task UpdateAccountAsync(Guid currentUserId, Guid id, UserUpdateAccountDTO userUpdateDTO);
+        public Task DeleteAsync(Guid currentUserId, Guid id);
     }
 }

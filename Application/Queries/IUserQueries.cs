@@ -6,6 +6,6 @@ namespace CardVault.Application.Queries
 {
     public interface IUserQueries
     {
-        public Task<PagedResult<UserViewDTO>> GetAll(UserQueryParameters queryParams);
+        public Task<PagedResult<UserResponseDTO>> GetAll(UserQueryParameters queryParams);
     }
 }

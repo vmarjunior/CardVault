@@ -36,6 +36,11 @@
             Deck = null;
         }
 
+        public void ChangeVirtualStatus()
+        {
+            IsVirtual = !IsVirtual;
+        }
+
         public static UserCard CreateVirtualCard(User user, Card card, Deck deck)
         {
             if (deck == null) throw new ArgumentNullException(nameof(deck));

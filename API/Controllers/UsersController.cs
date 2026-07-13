@@ -1,4 +1,4 @@
-﻿using CardVault.Application.Constants;
+﻿using CardVault.API.Extensions;
 using CardVault.Application.DTOs.User;
 using CardVault.Application.Interfaces;
 using CardVault.Application.QueryParameters;
@@ -19,7 +19,7 @@ namespace CardVault.API.Controllers
             return Ok(pagedResult);
         }
 
-        [HttpGet("{id}", Name = nameof(GetById))]
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var user = await userService.GetByIdAsync(id);
@@ -38,24 +38,27 @@ namespace CardVault.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
         }
 
-        [HttpPatch("update/profile/{id}")]
+        [HttpPatch("{id:guid}/profile")]
         public async Task<IActionResult> UpdateProfile(Guid id, [FromBody] UserUpdateProfileDTO userUpdateDTO)
         {
-            await userService.UpdateProfileAsync(id, userUpdateDTO);
+            var userId = User.GetUserId();
+            await userService.UpdateProfileAsync(userId, id, userUpdateDTO);
             return NoContent();
         }
 
-        [HttpPatch("update/account/{id}")]
+        [HttpPut("{id:guid}/account")]
         public async Task<IActionResult> UpdateAccount(Guid id, [FromBody] UserUpdateAccountDTO userUpdateAccountDTO)
         {
-            await userService.UpdateAccountAsync(id, userUpdateAccountDTO);
+            var userId = User.GetUserId();
+            await userService.UpdateAccountAsync(userId, id, userUpdateAccountDTO);
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await userService.DeleteAsync(id);
+            var userId = User.GetUserId();
+            await userService.DeleteAsync(userId, id);
             return NoContent();
         }
     }

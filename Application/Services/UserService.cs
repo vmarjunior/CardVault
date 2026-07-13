@@ -22,18 +22,18 @@ namespace CardVault.Application.Services
             _userQueries = userQueries;
         }
 
-        public async Task<PagedResult<UserViewDTO>> GetAllAsync(UserQueryParameters queryParams)
+        public async Task<PagedResult<UserResponseDTO>> GetAllAsync(UserQueryParameters queryParams)
         {
             return await _userQueries.GetAll(queryParams);
         }
 
-        public async Task<UserViewDTO?> GetByIdAsync(Guid userId)
+        public async Task<UserResponseDTO?> GetByIdAsync(Guid userId)
         {
             var user = await _userRepository.GetByIdAsync(userId);
             return user?.ToDto();
         }
 
-        public async Task<UserViewDTO> CreateAsync(UserCreateDTO userCreateDTO)
+        public async Task<UserResponseDTO> CreateAsync(UserCreateDTO userCreateDTO)
         {
             if (await _userRepository.IsAccountNameTakenAsync(null, userCreateDTO.AccountName))
                 throw new InvalidOperationException("This account name is already in use.");
@@ -47,14 +47,15 @@ namespace CardVault.Application.Services
                 userCreateDTO.Nickname
             );
 
-            var newUser = await _userRepository.CreateAsync(user);
+            var newUser = await _userRepository.AddAsync(user);
             return newUser.ToDto();
         }
 
-        public async Task UpdateProfileAsync(Guid id, UserUpdateProfileDTO userUpdateProfileDTO)
+        public async Task UpdateProfileAsync(Guid currentUserId, Guid id, UserUpdateProfileDTO userUpdateProfileDTO)
         {
-            var userToUpdate = await _userRepository.GetByIdAsync(id);
+            AuthorizationHelper.EnsureResourceOwner(currentUserId, id);
 
+            var userToUpdate = await _userRepository.GetByIdAsync(id);
             if (userToUpdate == null)
                 throw new InvalidOperationException($"Cannot update user with ID {id} because it was not found.");
 
@@ -63,10 +64,11 @@ namespace CardVault.Application.Services
             await _userRepository.UpdateAsync(userToUpdate);
         }
 
-        public async Task UpdateAccountAsync(Guid id, UserUpdateAccountDTO userUpdateAccountDTO)
+        public async Task UpdateAccountAsync(Guid currentUserId, Guid id, UserUpdateAccountDTO userUpdateAccountDTO)
         {
-            var userToUpdate = await _userRepository.GetByIdAsync(id);
+            AuthorizationHelper.EnsureResourceOwner(currentUserId, id);
 
+            var userToUpdate = await _userRepository.GetByIdAsync(id);
             if (userToUpdate == null)
                 throw new InvalidOperationException($"Cannot update user with ID {id} because it was not found.");
 
@@ -83,9 +85,15 @@ namespace CardVault.Application.Services
             await _userRepository.UpdateAsync(userToUpdate);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid currentUserId, Guid id)
         {
-            await _userRepository.DeleteAsync(id);
+            AuthorizationHelper.EnsureResourceOwner(currentUserId, id);
+
+            var user = await _userRepository.GetByIdAsync(id);
+            if (user == null)
+                throw new InvalidOperationException($"Cannot remove user with ID {id} because it was not found.");
+
+            await _userRepository.RemoveAsync(user);
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CardVault.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial_Create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,7 +55,7 @@ namespace CardVault.Infrastructure.Migrations
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     ImageUrl = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     Artist = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    ColorIdentity = table.Column<int>(type: "integer", nullable: false),
+                    ColorIdentity = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
                     Supertype = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Subtype = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     SetId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -160,9 +160,9 @@ namespace CardVault.Infrastructure.Migrations
                 columns: new[] { "Id", "Artist", "ColorIdentity", "Description", "ImageUrl", "IsLegendary", "ManaValue", "Name", "Power", "Price", "PriceLastUpdated", "Rarity", "SetId", "Subtype", "Supertype", "Toughness" },
                 values: new object[,]
                 {
-                    { new Guid("c1d2e3f4-0000-0000-0000-000000000001"), "Christopher Rush", 0, "{T}, Sacrifice Black Lotus: Add three mana of any one color.", "https://cards.scryfall.io/large/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.jpg", false, 0, "Black Lotus", null, 500000.00m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 3, new Guid("a1b2c3d4-0000-0000-0000-000000000001"), null, "Artifact", null },
-                    { new Guid("c1d2e3f4-0000-0000-0000-000000000002"), "Matt Stewart", 2, "At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.", "https://cards.scryfall.io/large/front/1/1/11bf83bb-c95b-4b4f-9a56-ce7a1816307a.jpg", false, 1, "Delver of Secrets // Insectile Aberration", 1, 1.50m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 1, new Guid("a1b2c3d4-0000-0000-0000-000000000006"), "Human Wizard", "Creature", 1 },
-                    { new Guid("c1d2e3f4-0000-0000-0000-000000000003"), "Simon Dominic", 4, "Whenever Ragavan, Nimble Pilferer deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Until end of turn, you may cast that card.", "https://cards.scryfall.io/large/front/a/9/a9738cda-adb1-47fb-9f4c-ecd930228c4d.jpg", true, 1, "Ragavan, Nimble Pilferer", 2, 45.00m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 4, new Guid("a1b2c3d4-0000-0000-0000-000000000013"), "Monkey Pirate", "Legendary Creature", 1 }
+                    { new Guid("c1d2e3f4-0000-0000-0000-000000000001"), "Christopher Rush", "", "{T}, Sacrifice Black Lotus: Add three mana of any one color.", "https://cards.scryfall.io/large/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.jpg", false, 0, "Black Lotus", null, 500000.00m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 3, new Guid("a1b2c3d4-0000-0000-0000-000000000001"), null, "Artifact", null },
+                    { new Guid("c1d2e3f4-0000-0000-0000-000000000002"), "Matt Stewart", "U", "At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.", "https://cards.scryfall.io/large/front/1/1/11bf83bb-c95b-4b4f-9a56-ce7a1816307a.jpg", false, 1, "Delver of Secrets // Insectile Aberration", 1, 1.50m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 1, new Guid("a1b2c3d4-0000-0000-0000-000000000006"), "Human Wizard", "Creature", 1 },
+                    { new Guid("c1d2e3f4-0000-0000-0000-000000000003"), "Simon Dominic", "R", "Whenever Ragavan, Nimble Pilferer deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Until end of turn, you may cast that card.", "https://cards.scryfall.io/large/front/a/9/a9738cda-adb1-47fb-9f4c-ecd930228c4d.jpg", true, 1, "Ragavan, Nimble Pilferer", 2, 45.00m, new DateTime(2026, 6, 22, 10, 0, 0, 0, DateTimeKind.Unspecified), 4, new Guid("a1b2c3d4-0000-0000-0000-000000000013"), "Monkey Pirate", "Legendary Creature", 1 }
                 });
 
             migrationBuilder.CreateIndex(

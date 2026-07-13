@@ -1,14 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using CardVault.Application.DTOs.Auth;
+﻿using CardVault.Application.DTOs.Auth;
 using CardVault.Application.Interfaces;
 using CardVault.Domain.Repositories;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CardVault.Application.Services
 {
@@ -35,6 +32,10 @@ namespace CardVault.Application.Services
             if (!_passwordHasher.VerifyPassword(authRequest.Password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
+            //Login successful
+            user.UpdateLastTimeActive();
+            await _userRepository.UpdateAsync(user);
+
             return GenerateJwtToken(user);
         }
 
@@ -47,9 +48,18 @@ namespace CardVault.Application.Services
                 new Claim(JwtRegisteredClaimNames.Name, user.Nickname)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)
+            );
+
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.UtcNow.AddDays(7);
+
+            var expiryDays = int.Parse(
+                _configuration["Jwt:ExpiryDays"]
+                ?? throw new InvalidOperationException("Jwt:ExpiryDays not configured.")
+            );
+
+            var expires = DateTime.UtcNow.AddDays(expiryDays);
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],

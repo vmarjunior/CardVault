@@ -11,7 +11,7 @@ namespace CardVault.Infrastructure.Queries
 {
     public class UserQueries(AppDbContext context) : IUserQueries
     {
-        public async Task<PagedResult<UserViewDTO>> GetAll(UserQueryParameters queryParams)
+        public async Task<PagedResult<UserResponseDTO>> GetAll(UserQueryParameters queryParams)
         {
             IQueryable<User> query = context.Users.AsNoTracking();
 
@@ -20,7 +20,7 @@ namespace CardVault.Infrastructure.Queries
             var items = await query
                 .Skip((queryParams.PageNumber - 1) * queryParams.PageSize)
                 .Take(queryParams.PageSize)
-                .Select(userEntity => new UserViewDTO
+                .Select(userEntity => new UserResponseDTO
                 {
                     Id = userEntity.Id,
                     Nickname = userEntity.Nickname,
@@ -30,7 +30,7 @@ namespace CardVault.Infrastructure.Queries
                     LastActive = userEntity.LastActive
                 }).ToListAsync();
 
-            return new PagedResult<UserViewDTO>
+            return new PagedResult<UserResponseDTO>
             {
                 Items = items,
                 TotalCount = totalCount,

@@ -1,17 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CardVault.Domain.Entities;
+﻿using CardVault.Domain.Entities;
 using CardVault.Domain.Repositories;
-using System;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CardVault.Infrastructure.Repositories
 {
     public class UserRepository(AppDbContext context) : IUserRepository
     {
-        public async Task<User?> GetByIdAsync(Guid userId)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
             return await context.Users
-                .FirstOrDefaultAsync(user => user.Id == userId);
+                .Include(x => x.UserCards)
+                .Include(x => x.Decks)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User?> GetByAccountNameAsync(string accountName)
@@ -20,7 +20,7 @@ namespace CardVault.Infrastructure.Repositories
                 .FirstOrDefaultAsync(user => user.AccountName == accountName);
         }
 
-        public async Task<User> CreateAsync(User user)
+        public async Task<User> AddAsync(User user)
         {
             context.Users.Add(user);
             await context.SaveChangesAsync();
@@ -33,14 +33,9 @@ namespace CardVault.Infrastructure.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid userId)
+        public async Task RemoveAsync(User user)
         {
-            var userToDelete = await context.Users.FindAsync(userId);
-
-            if (userToDelete == null)
-                throw new InvalidOperationException($"Cannot delete user with ID {userId} because it was not found.");
-
-            context.Users.Remove(userToDelete);
+            context.Users.Remove(user);
             await context.SaveChangesAsync();
         }
 

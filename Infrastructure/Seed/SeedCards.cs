@@ -15,7 +15,7 @@ namespace CardVault.Infrastructure.Seed
             public string Name { get; set; }
             public string ImageUrl { get; set; }
             public string Artist { get; set; }
-            public int ColorIdentity { get; set; }
+            public string ColorIdentity { get; set; }
             public string Supertype { get; set; }
             public string? Subtype { get; set; }
             public Guid SetId { get; set; }
@@ -43,7 +43,7 @@ namespace CardVault.Infrastructure.Seed
                 Name = dto.Name,
                 ImageUrl = dto.ImageUrl,
                 Artist = dto.Artist,
-                ColorIdentity = (ColorIdentity)dto.ColorIdentity,
+                ColorIdentity = dto.ColorIdentity,
                 Supertype = dto.Supertype,
                 Subtype = dto.Subtype,
                 Rarity = (Rarity)dto.Rarity,

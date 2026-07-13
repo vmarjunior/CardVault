@@ -54,8 +54,7 @@ namespace CardVault.Infrastructure.Persistence.Configurations
                    .IsRequired();
 
             builder.Property(c => c.ColorIdentity)
-                   .HasConversion<int>()
-                   .IsRequired();
+                   .HasMaxLength(5);
 
             builder.Property<Guid>("SetId").IsRequired();
         }

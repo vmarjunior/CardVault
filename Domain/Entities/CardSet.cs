@@ -1,6 +1,4 @@
 ﻿using CardVault.Domain.Enums;
-using System;
-using System.Collections.Generic;
 
 namespace CardVault.Domain.Entities
 {
@@ -41,16 +39,5 @@ namespace CardVault.Domain.Entities
 
         private readonly List<Card> _cards = new();
         public virtual IReadOnlyCollection<Card> Cards => _cards.AsReadOnly();
-
-        public void AddCard(Card card)
-        {
-            if (card is null)
-                throw new ArgumentNullException(nameof(card), "Card cannot be null.");
-
-            if (card.Set.Code != this.Code)
-                throw new InvalidOperationException("Card does not belong to this set.");
-
-            _cards.Add(card);
-        }
     }
 }

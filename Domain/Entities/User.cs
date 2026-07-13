@@ -9,12 +9,10 @@ namespace CardVault.Domain.Entities
 
         public User(string accountName, byte[] passwordHash, byte[] passwordSalt, string nickname)
         {
-            if (string.IsNullOrWhiteSpace(accountName))
-                throw new InvalidOperationException("Account name cannot be empty.");
-            if (passwordHash == null || passwordSalt == null)
-                throw new InvalidOperationException("User password cannot be empty.");
-            if (string.IsNullOrWhiteSpace(nickname))
-                throw new InvalidOperationException("User name cannot be empty.");
+            ArgumentException.ThrowIfNullOrWhiteSpace(accountName);
+            ArgumentNullException.ThrowIfNull(passwordHash);
+            ArgumentNullException.ThrowIfNull(passwordSalt);
+            ArgumentException.ThrowIfNullOrWhiteSpace(nickname);
 
             Id = Guid.NewGuid();
             AccountName = accountName;
@@ -40,10 +38,9 @@ namespace CardVault.Domain.Entities
 
         public void UpdateAccount(string accountName, byte[] passwordHash, byte[] passwordSalt)
         {
-            if (string.IsNullOrWhiteSpace(accountName))
-                throw new InvalidOperationException("Account name cannot be empty.");
-            if (passwordHash == null || passwordSalt == null)
-                throw new ArgumentException("PasswordHash or PasswordSalt can't be empty or null.");
+            ArgumentException.ThrowIfNullOrWhiteSpace(accountName);
+            ArgumentNullException.ThrowIfNull(passwordHash);
+            ArgumentNullException.ThrowIfNull(passwordSalt);
 
             AccountName = accountName;
             PasswordHash = passwordHash;
@@ -52,8 +49,7 @@ namespace CardVault.Domain.Entities
 
         public void UpdateProfile(string nickname)
         {
-            if (string.IsNullOrWhiteSpace(nickname))
-                throw new InvalidOperationException("Nickname cannot be empty or null.");
+            ArgumentException.ThrowIfNullOrWhiteSpace(nickname);
 
             Nickname = nickname;
         }

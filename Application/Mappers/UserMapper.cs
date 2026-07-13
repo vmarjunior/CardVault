@@ -3,11 +3,11 @@ using CardVault.Domain.Entities;
 
 namespace CardVault.Application.Mappers
 {
-    public static class UserMappers
+    public static class UserMapper
     {
-        public static UserViewDTO ToDto(this User user)
+        public static UserResponseDTO ToDto(this User user)
         {
-            return new UserViewDTO
+            return new UserResponseDTO
             {
                 Id = user.Id,
                 Nickname = user.Nickname,

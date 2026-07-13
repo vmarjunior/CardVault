@@ -7,7 +7,7 @@ namespace CardVault.Domain.Entities
     {
         private Card() { }
 
-        public Card(string name, string imageUrl, string artist, ColorIdentity colorIdentity, string supertype, string subtype, CardSet set, Rarity rarity, bool isLegendary, int manaValue, string description, decimal price, int? power, int? toughness)
+        public Card(string name, string imageUrl, string artist, string colorIdentity, string supertype, string subtype, CardSet set, Rarity rarity, bool isLegendary, int manaValue, string description, decimal price, int? power, int? toughness)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new InvalidOperationException("Card name cannot be empty.");
@@ -40,7 +40,7 @@ namespace CardVault.Domain.Entities
         public string Name { get; private set; }
         public string ImageUrl { get; private set; }
         public string Artist { get; private set; }
-        public ColorIdentity ColorIdentity { get; private set; }
+        public string ColorIdentity { get; private set; }
         public string Supertype { get; private set; }
         public string? Subtype { get; private set; }
         public virtual CardSet Set { get; private set; }

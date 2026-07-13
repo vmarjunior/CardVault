@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CardVault.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260623012252_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260627011240_Initial_Create")]
+    partial class Initial_Create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,8 +36,10 @@ namespace CardVault.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("ColorIdentity")
-                        .HasColumnType("integer");
+                    b.Property<string>("ColorIdentity")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -98,7 +100,7 @@ namespace CardVault.Infrastructure.Migrations
                         {
                             Id = new Guid("c1d2e3f4-0000-0000-0000-000000000001"),
                             Artist = "Christopher Rush",
-                            ColorIdentity = 0,
+                            ColorIdentity = "",
                             Description = "{T}, Sacrifice Black Lotus: Add three mana of any one color.",
                             ImageUrl = "https://cards.scryfall.io/large/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.jpg",
                             IsLegendary = false,
@@ -114,7 +116,7 @@ namespace CardVault.Infrastructure.Migrations
                         {
                             Id = new Guid("c1d2e3f4-0000-0000-0000-000000000002"),
                             Artist = "Matt Stewart",
-                            ColorIdentity = 2,
+                            ColorIdentity = "U",
                             Description = "At the beginning of your upkeep, look at the top card of your library. You may reveal that card. If an instant or sorcery card is revealed this way, transform Delver of Secrets.",
                             ImageUrl = "https://cards.scryfall.io/large/front/1/1/11bf83bb-c95b-4b4f-9a56-ce7a1816307a.jpg",
                             IsLegendary = false,
@@ -133,7 +135,7 @@ namespace CardVault.Infrastructure.Migrations
                         {
                             Id = new Guid("c1d2e3f4-0000-0000-0000-000000000003"),
                             Artist = "Simon Dominic",
-                            ColorIdentity = 4,
+                            ColorIdentity = "R",
                             Description = "Whenever Ragavan, Nimble Pilferer deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Until end of turn, you may cast that card.",
                             ImageUrl = "https://cards.scryfall.io/large/front/a/9/a9738cda-adb1-47fb-9f4c-ecd930228c4d.jpg",
                             IsLegendary = true,
