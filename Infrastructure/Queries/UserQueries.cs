@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CardVault.Application.DTOs.User;
+﻿using CardVault.Application.DTOs.User;
 using CardVault.Application.DTOs.Wrapper;
+using CardVault.Application.Mappers;
 using CardVault.Application.Queries;
 using CardVault.Application.QueryParameters;
 using CardVault.Domain.Entities;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CardVault.Infrastructure.Queries
 {
@@ -15,20 +14,17 @@ namespace CardVault.Infrastructure.Queries
         {
             IQueryable<User> query = context.Users.AsNoTracking();
 
+            if (!string.IsNullOrEmpty(queryParams.Nickname))
+                query = query.Where(x => EF.Functions.ILike(x.Nickname, $"%{queryParams.Nickname}%"));
+
             var totalCount = await query.CountAsync();
 
             var items = await query
+                .OrderBy(u => u.Id)
                 .Skip((queryParams.PageNumber - 1) * queryParams.PageSize)
                 .Take(queryParams.PageSize)
-                .Select(userEntity => new UserResponseDTO
-                {
-                    Id = userEntity.Id,
-                    Nickname = userEntity.Nickname,
-                    DeckCount = userEntity.Decks.Count(),
-                    CardCount = userEntity.UserCards.Count(),
-                    Created = userEntity.Created,
-                    LastActive = userEntity.LastActive
-                }).ToListAsync();
+                .Select(user => user.ToDto())
+                .ToListAsync();
 
             return new PagedResult<UserResponseDTO>
             {

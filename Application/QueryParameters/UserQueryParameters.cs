@@ -1,16 +1,15 @@
-﻿namespace CardVault.Application.QueryParameters
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CardVault.Application.QueryParameters
 {
     public class UserQueryParameters
     {
-        private const int MaxPageSize = 50;
-        private int _pageSize = 10;
+        public string? Nickname { get; set; }
 
+        [Range(1, int.MaxValue)]
         public int PageNumber { get; set; } = 1;
 
-        public int PageSize
-        {
-            get => _pageSize;
-            set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
-        }
+        [Range(1, 50)]
+        public int PageSize { get; set; } = 10;
     }
 }

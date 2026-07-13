@@ -10,7 +10,9 @@ namespace CardVault.Application.Mappers
             return new CardSetResponseDTO
             {
                 Id = cardSet.Id,
+                Code = cardSet.Code,
                 Name = cardSet.Name,
+                ImageUrl = cardSet.ImageUrl,
                 ReleaseDate = cardSet.ReleaseDate
             };
         }
