@@ -17,7 +17,6 @@ It's still under construction, but here is what is working right now:
 - [x] User registration, authentication, and profile updates via JWT.
 - [x] Automated data seeding for development (loads test users, cards, and decks from JSON files).
 - [x] Swagger UI with Bearer token support.
-- [x] Unit tests for the User domain rules.
 
 ## How to run it locally
 
