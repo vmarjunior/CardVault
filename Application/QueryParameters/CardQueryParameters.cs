@@ -8,6 +8,7 @@ namespace CardVault.Application.QueryParameters
         public string? CardSetName { get; set; }
 
         [MinLength(3)]
+        [MaxLength(3)]
         public string? CardSetCode { get; set; }
 
 

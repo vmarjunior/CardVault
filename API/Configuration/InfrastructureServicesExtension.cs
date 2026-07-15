@@ -33,6 +33,7 @@ namespace CardVault.API.Configuration
             //Queries
             services.AddScoped<IUserQueries, UserQueries>();
             services.AddScoped<ICardQueries, CardQueries>();
+            services.AddScoped<IDeckQueries, DeckQueries>();
 
             return services;
         }

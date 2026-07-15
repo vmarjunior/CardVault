@@ -1,6 +1,7 @@
 ﻿using CardVault.API.Extensions;
 using CardVault.Application.DTOs.Deck;
 using CardVault.Application.Interfaces;
+using CardVault.Application.QueryParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,13 @@ namespace CardVault.API.Controllers
     [Route("api/[controller]")]
     public class DecksController(IDeckService deckService) : ControllerBase
     {
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] DeckQueryParameters queryParams)
+        {
+            var pagedResult = await deckService.GetAllAsync(queryParams);
+            return Ok(pagedResult);
+        }
+
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {

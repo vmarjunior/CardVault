@@ -1,13 +1,21 @@
 ﻿using CardVault.Application.DTOs.Deck;
+using CardVault.Application.DTOs.Wrapper;
 using CardVault.Application.Interfaces;
 using CardVault.Application.Mappers;
+using CardVault.Application.Queries;
+using CardVault.Application.QueryParameters;
 using CardVault.Domain.Entities;
 using CardVault.Domain.Repositories;
 
 namespace CardVault.Application.Services
 {
-    public class DeckService(IDeckRepository deckRepository, IUserRepository userRepository) : IDeckService
+    public class DeckService(IDeckRepository deckRepository, IDeckQueries deckQueries, IUserRepository userRepository) : IDeckService
     {
+        public async Task<PagedResult<DeckListResponseDTO>> GetAllAsync(DeckQueryParameters queryParameters)
+        {
+            return await deckQueries.GetAll(queryParameters);
+        }
+
         public async Task<DeckResponseDTO> GetByIdAsync(Guid id)
         {
             var deck = await deckRepository.GetByIdAsync(id);
