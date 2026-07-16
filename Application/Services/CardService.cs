@@ -4,11 +4,14 @@ using CardVault.Application.Interfaces;
 using CardVault.Application.Mappers;
 using CardVault.Application.Queries;
 using CardVault.Application.QueryParameters;
+using CardVault.Domain.Entities;
 using CardVault.Domain.Repositories;
 
 namespace CardVault.Application.Services
 {
-    public class CardService(ICardRepository cardRepository, ICardQueries cardQueries) : ICardService
+    public class CardService(ICardRepository cardRepository, 
+                            ICardQueries cardQueries, 
+                            ICardExternalService cardExternalService) : ICardService
     {
         public async Task<PagedResult<CardResponseDTO>> GetAllAsync(CardQueryParameters queryParams)
         {
@@ -22,6 +25,24 @@ namespace CardVault.Application.Services
                 throw new InvalidOperationException($"Card with id '{id}' not found.");
 
             return card.ToDto();
+        }
+
+        public async Task<Card> GetOrCreateAsync(string name, string setCode)
+        {
+            var card = await cardRepository.GetByNameAndSetAsync(name, setCode);
+
+            if (card != null)
+                return card;
+
+            card = await cardExternalService.GetCardAsync(name, setCode);
+
+            if (card == null)
+                throw new InvalidOperationException(
+                    "Card could not be found.");
+
+            await cardRepository.AddAsync(card);
+
+            return card;
         }
 
         public async Task UpdateCardPriceAsync(Guid id, decimal price)

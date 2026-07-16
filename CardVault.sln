@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22
+# Visual Studio Version 18
+VisualStudioVersion = 18.7.11925.98 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.API", "API\CardVault.API.csproj", "{538DFF63-CAA6-48D9-A15C-8BAB0F2FC60E}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -20,10 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Infrastructure", 
 		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Domain.UnitTests", "CardVault.Domain.UnitTests\CardVault.Domain.UnitTests.csproj", "{3835C711-D4E4-4054-A548-443DEB44B672}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.UnitTests", "CardVault.UnitTests\CardVault.UnitTests.csproj", "{6F903A80-F692-4C00-8547-423D32947160}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +44,10 @@ Global
 		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C29CC6A-C9C6-4811-ACF4-DC67A0F13811}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3835C711-D4E4-4054-A548-443DEB44B672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3835C711-D4E4-4054-A548-443DEB44B672}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3835C711-D4E4-4054-A548-443DEB44B672}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3835C711-D4E4-4054-A548-443DEB44B672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F903A80-F692-4C00-8547-423D32947160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F903A80-F692-4C00-8547-423D32947160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F903A80-F692-4C00-8547-423D32947160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F903A80-F692-4C00-8547-423D32947160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

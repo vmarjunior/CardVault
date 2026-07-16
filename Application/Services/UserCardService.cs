@@ -8,9 +8,8 @@ namespace CardVault.Application.Services
     public class UserCardService(
         IUserCardRepository userCardRepository,
         IUserRepository userRepository,
-        ICardRepository cardRepository,
-        IDeckRepository deckRepository,
-        ICardExternalService cardExternalService) : IUserCardService
+        ICardService cardService,
+        IDeckRepository deckRepository) : IUserCardService
     {
         public async Task<UserCardResponseDTO> GetByIdAsync(Guid id)
         {
@@ -34,17 +33,7 @@ namespace CardVault.Application.Services
             if (user == null)
                 throw new InvalidOperationException("User not found.");
 
-            Card? card = await cardRepository.GetByNameAndSetAsync(cardScanDTO.Name, cardScanDTO.SetCode);
-
-            if (card == null)
-            {
-                card = await cardExternalService.GetCardAsync(cardScanDTO.Name, cardScanDTO.SetCode);
-
-                if (card == null)
-                    throw new InvalidOperationException("Card could not be found in Scryfall API.");
-
-                await cardRepository.AddAsync(card);
-            }
+            var card = await cardService.GetOrCreateAsync(cardScanDTO.Name, cardScanDTO.SetCode!);
 
             Deck? deck = null;
             if (cardScanDTO.DeckId.HasValue)
