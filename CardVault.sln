@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.Infrastructure", 
 		{E4B64665-F301-4B46-A131-574F419AF45A} = {E4B64665-F301-4B46-A131-574F419AF45A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.UnitTests", "CardVault.UnitTests\CardVault.UnitTests.csproj", "{6F903A80-F692-4C00-8547-423D32947160}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardVault.UnitTests", "UnitTests\CardVault.UnitTests.csproj", "{6F903A80-F692-4C00-8547-423D32947160}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
